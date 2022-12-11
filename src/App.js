@@ -18,6 +18,16 @@ class App {
       BridgeRandomNumberGenerator.generate
     );
     this.#bridgeGame = new BridgeGame(bridge);
+
+    InputView.readMoving(this);
+  }
+
+  move(direction) {
+    const isMove = this.#bridgeGame.move(direction);
+    OutputView.printMap(direction, isMove);
+
+    if (isMove) InputView.readMoving(this);
+    else InputView.readGameCommand(this);
   }
 }
 
