@@ -1,6 +1,7 @@
 const BridgeGame = require('./BridgeGame');
 const BridgeMaker = require('./BridgeMaker');
 const BridgeRandomNumberGenerator = require('./BridgeRandomNumberGenerator');
+const InputView = require('./InputView');
 const OutputView = require('./OutputView');
 
 class App {
@@ -8,6 +9,7 @@ class App {
 
   play() {
     OutputView.printStartPhrase();
+    InputView.readBridgeSize(this);
   }
 
   make(size) {
