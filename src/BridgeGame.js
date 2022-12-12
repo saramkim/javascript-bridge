@@ -4,6 +4,7 @@
 class BridgeGame {
   #bridge;
   #turn = 0;
+  #map = [[], []];
 
   constructor(bridge) {
     this.#bridge = bridge;
@@ -16,11 +17,33 @@ class BridgeGame {
   move(direction) {
     if (this.#bridge[this.#turn] === direction) {
       this.#turn += 1;
+      this.makeMap(direction, true);
       return true;
     } else {
       this.#turn = 0;
+      this.makeMap(direction, false);
       return false;
     }
+  }
+
+  makeMap(direction, isMove) {
+    const symbol = isMove ? 'O' : 'X';
+
+    if (direction === 'U') {
+      this.#map[0].push(symbol);
+      this.#map[1].push(' ');
+    } else if (direction === 'D') {
+      this.#map[0].push(' ');
+      this.#map[1].push(symbol);
+    }
+  }
+
+  getMap() {
+    const upperSymbol = this.#map[0].join(' | ');
+    const lowerSymbol = this.#map[1].join(' | ');
+    const upperMap = `[ ${upperSymbol} ]`;
+    const lowerMap = `[ ${lowerSymbol} ]`;
+    return [upperMap, lowerMap];
   }
 
   /**

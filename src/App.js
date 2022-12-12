@@ -24,10 +24,16 @@ class App {
 
   move(direction) {
     const isMove = this.#bridgeGame.move(direction);
-    OutputView.printMap(direction, isMove);
+
+    this.printMap();
 
     if (isMove) InputView.readMoving(this);
     else InputView.readGameCommand(this);
+  }
+
+  printMap() {
+    const map = this.#bridgeGame.getMap();
+    OutputView.printMap(map);
   }
 }
 
