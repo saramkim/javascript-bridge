@@ -7,10 +7,12 @@ const OutputView = require('./OutputView');
 
 class App {
   #bridgeGame;
+  #tryCount;
 
   play() {
     OutputView.printStartPhrase();
     InputView.readBridgeSize(this);
+    this.#tryCount = 1;
   }
 
   make(size) {
@@ -43,6 +45,7 @@ class App {
 
   retryOrQuit(input) {
     if (input === 'R') {
+      this.#tryCount += 1;
       this.retry();
     }
     if (input === 'Q') {
@@ -56,9 +59,13 @@ class App {
   }
 
   quit(isSucceed) {
-    OutputView.printResult(isSucceed);
+    OutputView.printResultPhrase();
+    this.printMap();
+    OutputView.printResult(isSucceed, this.#tryCount);
     Console.close();
   }
 }
+
+new App().play();
 
 module.exports = App;
