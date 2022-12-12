@@ -45,9 +45,14 @@ class App {
     }
   }
 
-  retry() {}
+  retry() {
+    this.#bridgeGame.retry();
+    InputView.readMoving(this);
+  }
 
   quit() {}
 }
+
+new App().play();
 
 module.exports = App;
