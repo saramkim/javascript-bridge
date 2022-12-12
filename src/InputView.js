@@ -24,7 +24,13 @@ const InputView = {
    */
   readMoving(app) {
     Console.readLine('이동할 칸을 선택해주세요. (위: U, 아래: D)', (input) => {
-      app.move(input);
+      try {
+        Validator.validateMoving(input);
+        app.move(input);
+      } catch (error) {
+        Console.print(error.message);
+        this.readMoving(app);
+      }
     });
   },
 
