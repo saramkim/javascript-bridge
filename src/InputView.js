@@ -41,7 +41,13 @@ const InputView = {
     Console.readLine(
       '게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)',
       (input) => {
-        app.retryOrQuit(input);
+        try {
+          Validator.validateGameCommand(input);
+          app.retryOrQuit(input);
+        } catch (error) {
+          Console.print(error.message);
+          this.readGameCommand(app);
+        }
       }
     );
   },
