@@ -35,6 +35,19 @@ class App {
     const map = this.#bridgeGame.getMap();
     OutputView.printMap(map);
   }
+
+  retryOrQuit(input) {
+    if (input === 'R') {
+      this.retry();
+    }
+    if (input === 'Q') {
+      this.quit();
+    }
+  }
+
+  retry() {}
+
+  quit() {}
 }
 
 module.exports = App;
